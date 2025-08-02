@@ -19,6 +19,8 @@
 - ✅ Fixed jittering numbers by removing opacity animations
 - ✅ Replaced motion.div with regular div for smooth number transitions
 - ✅ Removed problematic key prop that caused re-renders
+- ✅ Added "Please wait for sometime" message in bottom left
+- ✅ Applied responsive text sizing for mobile and desktop
 
 ## Failed Attempts
 
