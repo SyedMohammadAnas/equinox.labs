@@ -28,7 +28,7 @@ export default function SplashScreen() {
       // Increment count every 50ms for smooth counting animation
       const timer = setTimeout(() => {
         setCount(prev => prev + 1);
-      }, 30);
+      }, 20);
 
       return () => clearTimeout(timer);
     } else if (count >= 100 && isCounting) {
@@ -83,7 +83,7 @@ export default function SplashScreen() {
           {/* Main content area */}
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Countdown display in bottom right - smooth transitions without jittering */}
-            <div className="absolute -bottom-9 right-5 text-[10rem] font-sans">
+            <div className="absolute -bottom-9 right-5 text-[10rem] font-sans font-semibold">
               {count}
             </div>
           </div>
