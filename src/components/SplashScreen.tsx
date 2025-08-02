@@ -83,7 +83,12 @@ export default function SplashScreen() {
           {/* Main content area */}
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Countdown display in bottom right - smooth transitions without jittering */}
-            <div className="absolute -bottom-9 right-5 text-[10rem] font-sans font-semibold">
+            {/*
+              Countdown display with responsive text size:
+              - Large on desktop (10rem)
+              - Smaller on mobile (4rem)
+            */}
+            <div className="absolute -bottom-2 sm:-bottom-9 right-5 text-[4rem] sm:text-[10rem] font-sans font-semibold">
               {count}
             </div>
           </div>
