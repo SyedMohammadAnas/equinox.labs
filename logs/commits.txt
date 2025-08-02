@@ -1,0 +1,8 @@
+# Commit History
+
+## Commits
+
+### No commits yet
+- Waiting for user to request commits
+- Will track commit hashes and descriptions here
+- Will push to origin after 3 successful commits

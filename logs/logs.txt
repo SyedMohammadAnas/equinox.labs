@@ -1,0 +1,36 @@
+# Project Logs
+
+## Successful Attempts
+
+### 2024-12-19
+- ✅ Created SplashScreen component with countdown timer (0-100)
+- ✅ Implemented curtain-like animation that raises the entire screen upward
+- ✅ Added smooth animations using Framer Motion
+- ✅ Positioned countdown display in bottom right corner
+- ✅ Integrated SplashScreen component into main page
+- ✅ Fixed TypeScript linter errors by moving transition properties to motion components
+- ✅ Integrated Helvetica fonts from helvetica-255 folder
+- ✅ Created font configuration with all Helvetica variants (Regular, Bold, Light, Oblique, Rounded, Compressed)
+- ✅ Updated layout and CSS to use Helvetica fonts throughout the project
+- ✅ Applied Helvetica font to splash screen countdown display
+- ✅ Updated countdown animation for smooth transitions without bouncing effects
+- ✅ Reduced animation duration to 0.2s with easeInOut easing
+- ✅ Increased countdown speed to 30ms intervals for fluid counting
+- ✅ Fixed jittering numbers by removing opacity animations
+- ✅ Replaced motion.div with regular div for smooth number transitions
+- ✅ Removed problematic key prop that caused re-renders
+
+## Failed Attempts
+
+### 2024-12-19
+- ❌ Initial TypeScript errors with Framer Motion variants (RESOLVED)
+  - Issue: TypeScript type errors with ease property in transition objects
+  - Solution: Moved transition properties to motion components directly
+  - Status: Fixed successfully
+
+## Technical Details
+- Used Framer Motion for smooth animations
+- Countdown increments every 50ms for smooth counting
+- Curtain animation duration: 1.5 seconds with easeInOut easing
+- Count display animation: 0.3 seconds with easeOut easing
+- Component automatically removes itself from DOM after animation completes
