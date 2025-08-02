@@ -94,8 +94,8 @@ export default function SplashScreen() {
 
             {/* Please wait message in bottom left */}
             {/* Please wait message in bottom left - now bold */}
-            <div className="absolute bottom-5  left-5 sm:left-20 text-sm sm:text-xl font-sans font-bold ">
-              ( Please wait for sometime )
+            <div className="absolute bottom-5  left-5 sm:left-10 text-sm sm:text-xl font-sans font-bold ">
+              (Can't you just wait?)
             </div>
           </div>
         </motion.div>
