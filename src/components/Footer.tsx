@@ -110,13 +110,13 @@ const Footer: React.FC = () => {
       <div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
           {/* Location */}
-          <div className="text-lg md:font-light mb-4 md:mb-0">
+          <div className="text-lg font-light mb-4 md:mb-0">
             Andhra Pradesh, India
           </div>
 
           {/* Contact Information */}
-          <div className="text-lg md:font-light space-x-4 md:space-x-10 ml-77">
-            <span>Contact Us</span>
+          <div className="text-lg font-light space-x-4 md:space-x-10 ml-84 -mt-12">
+            <span>Contact</span>
           </div>
         </div>
       </div>
