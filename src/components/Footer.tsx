@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
       id="footer"
     >
       {/* Top Section - Navigation Links Grouped on Left */}
-      <div className="flex justify-between items-start md:mt-0 mt-30 md:mb-20 mb-70 md:pl-7 ml-1 md:-ml-6 w-full">
+      <div className="flex justify-between items-start md:mt-0 mt-40 md:mb-20 mb-70 md:pl-7 ml-1 md:-ml-6 w-full">
         {/* Left Side - Grouped Navigation Sections */}
         <div className="flex gap-12 md:gap-16">
           {/* Sitemap Section */}
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="text-lg md:font-light space-x-4 md:space-x-10 ml-75 -mt-10">
+          <div className="text-lg md:font-light space-x-4 md:space-x-10 ml-73 -mt-10">
             <span>Contact Us</span>
           </div>
         </div>
