@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
         {/* Main Logo Container */}
         <div className="relative">
           {/* Equinox Logo - Left Aligned */}
-          <h1 className="text-8xl md:-ml-8 ml-5 md:text-10xl lg:text-[27rem] text-white text-left">
+          <h1 className="text-8xl font-md:-ml-8 ml-5 md:text-10xl lg:text-[27rem] text-white text-left">
             Equinox.
           </h1>
 
