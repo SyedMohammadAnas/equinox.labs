@@ -15,24 +15,23 @@ import React from "react";
  * - Full-width layout spanning entire screen
  * - Navigation sections grouped on top left
  * - Uses Helvetica font family automatically (default font)
+ * - Mobile-optimized layout with proper alignments
  */
 const Footer: React.FC = () => {
   return (
     <footer
-      className="fixed bottom-0 left-0 w-full min-h-[100dvh] bg-black text-white z-[-1] flex flex-col justify-center p-8"
+      className="fixed bottom-0 left-0 w-full min-h-[100dvh] bg-[#111111] text-white z-[-1] flex flex-col justify-center p-8"
       id="footer"
     >
       {/* Footer Content Container - Full Width */}
       <div className="w-full">
-
-        {/* Top Section - Navigation Links Grouped on Left */}
-        <div className="flex justify-between items-start mb-20 pl-7 w-full">
+        <div className="flex justify-between items-start md:mb-20 mb-90 md:pl-7 ml-1 md:-ml-6 w-full">
           {/* Left Side - Grouped Navigation Sections */}
           <div className="flex gap-12">
             {/* Sitemap Section */}
             <div>
               <h3 className="text-2xl mb-4 text-white">Sitemap</h3>
-              <ul className="space-y-3 text-gray-300 text-lg font-bold">
+              <ul className="space-y-3 text-sm md:text-lg font-bold">
                 <li className="hover:text-white transition-colors">
                   Home <span className="font-normal">→</span>
                 </li>
@@ -54,7 +53,7 @@ const Footer: React.FC = () => {
             {/* Connect Section */}
             <div>
               <h3 className="text-2xl  mb-4 text-white">Connect</h3>
-              <ul className="space-y-3 text-gray-300 text-lg font-bold">
+              <ul className="space-y-3 text-sm md:text-lg font-bold">
                 <li className="hover:text-white transition-colors">
                   Instagram <span className="font-normal">↗</span>
                 </li>
@@ -79,7 +78,7 @@ const Footer: React.FC = () => {
             {/* Platforms Section */}
             <div>
               <h3 className="text-2xl  mb-4 text-white">Platforms</h3>
-              <ul className="space-y-3 text-gray-300 text-lg font-bold">
+              <ul className="space-y-3 text-sm md:text-lg font-bold">
                 <li className="hover:text-white transition-colors">
                   Trace Amounts <span className="font-normal">↗</span>
                 </li>
@@ -93,19 +92,28 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Back To Top Link */}
-          <div>
-            <a href="#" className="text-gray-300 text-xl font-bold hover:text-white transition-colors">
+          {/* Right Side - Back To Top Link (hidden on mobile, visible on md and up) */}
+          <div className="hidden md:block">
+            <a href="#" className="text-xl font-bold hover:text-white transition-colors">
               Back To Top
             </a>
           </div>
         </div>
 
-        {/* Middle Section - Large Logo */}
-        <div className="mb-7.5 w-full flex justify-start">
-          <h1 className="text-8xl md:text-10xl lg:text-[27rem] text-white">
-            Equinox.
-          </h1>
+        {/* Middle Section - Large Logo with LABS */}
+        <div className="mb-7.5 w-full">
+          {/* Main Logo Container */}
+          <div className="relative">
+            {/* Equinox Logo - Left Aligned */}
+            <h1 className="text-8xl md:-ml-8 -ml-2 md:text-10xl lg:text-[27rem] text-white text-left">
+              Equinox.
+            </h1>
+
+            {/* LABS Text - Positioned to the right of Equinox */}
+            <div className="absolute top-0 right-0 text-base md:text-lg lg:text-6xl md:mt-80 mt-25 font-bold text-white">
+              LABS
+            </div>
+          </div>
         </div>
 
         {/* Divider Line Above Bottom Section */}
@@ -115,13 +123,17 @@ const Footer: React.FC = () => {
         <div>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
             {/* Location */}
-            <div className="text-gray-300 text-lg mb-4 md:mb-0">
+            <div className="text-lg md:font-light mb-4 md:mb-0">
               Andhra Pradesh, India
             </div>
 
             {/* Contact Information */}
-            <div className="text-gray-300 text-lg space-x-10">
-              <span>adithimakind@gmail.com</span>
+            {/*
+              Reduced text size for mobile view by using responsive Tailwind classes.
+              - text-base for mobile, text-lg for md and above
+              - space-x-4 for mobile, space-x-10 for md and above
+            */}
+            <div className="text-lg md:font-light space-x-4 md:space-x-10">
               <span>Demos</span>
               <span>Contact Us</span>
             </div>
