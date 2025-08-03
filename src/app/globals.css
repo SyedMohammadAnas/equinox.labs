@@ -118,5 +118,26 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-helvetica);
+  }
+
+  /* Set Helvetica as default for all text elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, a, li, ul, ol {
+    font-family: var(--font-helvetica);
+  }
+}
+
+/* Custom Font Classes for Helvetica Variants */
+@layer utilities {
+  .font-helvetica {
+    font-family: var(--font-helvetica);
+  }
+
+  .font-helvetica-rounded {
+    font-family: var(--font-helvetica-rounded);
+  }
+
+  .font-helvetica-compressed {
+    font-family: var(--font-helvetica-compressed);
   }
 }

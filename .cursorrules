@@ -53,6 +53,9 @@ You are an expert developer in TypeScript, Node.js, Next.js 14 App Router, React
 - Create a file in logs folder named " commits.txt " that logs in the commit hashes with the description of each commit
 - Push the commits to Origin after 3 successful commits
 
+## Personal Preferences
+- Update the Tailwind configuration to set Helvetica as the default font family
+- Modify the CSS to use Helvetica as the base font
 
 ## AI Assistant Preferences
 - Begin the prompt with  " 🤖 : " always
