@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
       id="footer"
     >
       {/* Top Section - Navigation Links Grouped on Left */}
-      <div className="flex justify-between items-start md:mt-0 mt-30 md:mb-20 mb-70 md:pl-7 ml-1 md:-ml-6 w-full">
+      <div className="flex justify-between items-start md:mt-0 mt-40 md:mb-20 mb-70 md:pl-7 ml-1 md:-ml-6 w-full">
         {/* Left Side - Grouped Navigation Sections */}
         <div className="flex gap-12 md:gap-16">
           {/* Sitemap Section */}
