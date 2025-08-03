@@ -90,8 +90,8 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Middle Section - Large Logo with LABS */}
-        <div className="md:mb-7.5 w-full">
-          {/* Main Logo Container */}
+        <div className="md:mb-7.5 w-full mt-20 md:mt-24">
+          {/* Main Logo Container :P*/}
           <div className="relative">
             {/* Equinox Logo - Left Aligned */}
             <h1 className="text-8xl md:-ml-8 -ml-2 md:text-10xl lg:text-[27rem] text-white text-left">
