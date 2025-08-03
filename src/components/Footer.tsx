@@ -1,6 +1,4 @@
-'use client'
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RightArrow from "./icons/RightArrow";
 import DiagonalArrow from "./icons/DiagonalArrow";
 
@@ -22,62 +20,15 @@ import DiagonalArrow from "./icons/DiagonalArrow";
  * - Mobile-optimized layout with proper alignments
  * - SVG icons for navigation arrows
  * - Independently positioned sections for individual control
- * - Mobile viewport handling to prevent snapping on scroll
  */
 const Footer: React.FC = () => {
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
-  const [viewportHeight, setViewportHeight] = useState(0);
-
-  useEffect(() => {
-    // Function to handle viewport changes
-    const handleViewportChange = () => {
-      const vh = window.innerHeight;
-      const vw = window.innerWidth;
-
-      // Check if it's a mobile device
-      const isMobile = vw <= 768;
-
-      setViewportHeight(vh);
-      setIsMobileViewport(isMobile);
-    };
-
-    // Initial setup
-    handleViewportChange();
-
-    // Add event listeners for viewport changes
-    window.addEventListener('resize', handleViewportChange);
-    window.addEventListener('orientationchange', handleViewportChange);
-
-    // Handle iOS Safari viewport changes
-    let timeoutId: NodeJS.Timeout;
-    const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleViewportChange, 100);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('resize', handleViewportChange);
-      window.removeEventListener('orientationchange', handleViewportChange);
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
   return (
     <footer
-      className={`fixed bottom-0 left-0 w-full min-h-[100dvh] bg-[#111111] text-white z-[-1] transition-all duration-300 ease-out ${
-        isMobileViewport ? 'pb-safe' : 'p-8'
-      } ${isMobileViewport ? 'pt-8' : 'p-8'}`}
-      style={{
-        minHeight: isMobileViewport ? `${viewportHeight}px` : '100dvh',
-        paddingBottom: isMobileViewport ? 'env(safe-area-inset-bottom)' : undefined,
-      }}
+      className="fixed bottom-0 left-0 w-full min-h-[100dvh] bg-[#111111] text-white z-[-1] p-8"
       id="footer"
     >
       {/* Top Section - Navigation Links Grouped on Left */}
-      <div className="flex justify-between items-start md:mt-0 mt-30 md:mb-20 mb-70 md:pl-7 ml-7 md:-ml-6 w-full">
+      <div className="flex justify-between items-start md:mt-0 mt-30 md:mb-20 mb-70 md:pl-7 ml-1 md:-ml-6 w-full">
         {/* Left Side - Grouped Navigation Sections */}
         <div className="flex gap-12 md:gap-16">
           {/* Sitemap Section */}
@@ -141,31 +92,30 @@ const Footer: React.FC = () => {
         {/* Main Logo Container */}
         <div className="relative">
           {/* Equinox Logo - Left Aligned */}
-          <h1 className="text-8xl font-md:-ml-8 ml-5 md:text-10xl lg:text-[27rem] text-white text-left">
+          <h1 className="text-8xl md:-ml-8 -ml-2 md:text-10xl lg:text-[27rem] text-white text-left">
             Equinox.
           </h1>
 
           {/* LABS Text - Positioned to the right of Equinox */}
-          <div className="absolute top-0 right-0 text-base md:text-lg lg:text-6xl md:mt-80 mt-16 md:ml-10 mr-6 font-bold text-white">
+          <div className="absolute top-0 right-0 text-base md:text-lg lg:text-6xl md:mt-80 mt-21 font-bold text-white">
             LABS
           </div>
         </div>
       </div>
 
       {/* Divider Line Above Bottom Section */}
-      <hr className="border-t border-white my-6 md:w-full w-105 ml-5 md:ml-0" />
+      <hr className="border-t border-white md:my-6 my-1.5 w-full" />
 
       {/* Bottom Section - Contact and Location */}
       <div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
           {/* Location */}
-          <div className="text-lg ml-5 md:ml-0 font-light mb-4 md:mb-0">
+          <div className="text-lg md:font-light mb-4 md:mb-0">
             Andhra Pradesh, India
           </div>
 
           {/* Contact Information */}
-          <div className="text-lg ml-5 md:ml-0 font-light space-x-4 md:space-x-10">
-            <span>Demos</span>
+          <div className="text-lg md:font-light space-x-4 md:space-x-10 ml-77">
             <span>Contact Us</span>
           </div>
         </div>
