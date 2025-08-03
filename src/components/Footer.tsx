@@ -1,4 +1,6 @@
 import React from "react";
+import RightArrow from "./icons/RightArrow";
+import DiagonalArrow from "./icons/DiagonalArrow";
 
 /**
  * Footer Component
@@ -16,6 +18,7 @@ import React from "react";
  * - Navigation sections grouped on top left
  * - Uses Helvetica font family automatically (default font)
  * - Mobile-optimized layout with proper alignments
+ * - SVG icons for navigation arrows
  */
 const Footer: React.FC = () => {
   return (
@@ -25,27 +28,29 @@ const Footer: React.FC = () => {
     >
       {/* Footer Content Container - Full Width */}
       <div className="w-full">
-        <div className="flex justify-between items-start md:mb-20 mb-90 md:pl-7 ml-1 md:-ml-6 w-full">
+
+        {/* Top Section - Navigation Links Grouped on Left */}
+        <div className="flex justify-between items-start md:mb-20 mb-50 md:pl-7 ml-1 md:-ml-6 w-full">
           {/* Left Side - Grouped Navigation Sections */}
-          <div className="flex gap-12">
+          <div className="flex gap-12 md:gap-16">
             {/* Sitemap Section */}
             <div>
               <h3 className="text-2xl mb-4 text-white">Sitemap</h3>
               <ul className="space-y-3 text-sm md:text-lg font-bold">
-                <li className="hover:text-white transition-colors">
-                  Home <span className="font-normal">→</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Home <RightArrow size={23} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  About <span className="font-normal">→</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  About <RightArrow size={23} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  Music <span className="font-normal">→</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Music <RightArrow size={23} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  Awards <span className="font-normal">→</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Awards <RightArrow size={23} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  Shop <span className="font-normal">→</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Shop <RightArrow size={23} color="currentColor" />
                 </li>
               </ul>
             </div>
@@ -54,39 +59,23 @@ const Footer: React.FC = () => {
             <div>
               <h3 className="text-2xl  mb-4 text-white">Connect</h3>
               <ul className="space-y-3 text-sm md:text-lg font-bold">
-                <li className="hover:text-white transition-colors">
-                  Instagram <span className="font-normal">↗</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Instagram <DiagonalArrow size={25} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  TikTok <span className="font-normal">↗</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  TikTok <DiagonalArrow size={25} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  X <span className="font-normal">↗</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  X <DiagonalArrow size={25} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  YouTube <span className="font-normal">↗</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  YouTube <DiagonalArrow size={25} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  Facebook <span className="font-normal">↗</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Facebook <DiagonalArrow size={25} color="currentColor" />
                 </li>
-                <li className="hover:text-white transition-colors">
-                  Spotify <span className="font-normal">↗</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Platforms Section */}
-            <div>
-              <h3 className="text-2xl  mb-4 text-white">Platforms</h3>
-              <ul className="space-y-3 text-sm md:text-lg font-bold">
-                <li className="hover:text-white transition-colors">
-                  Trace Amounts <span className="font-normal">↗</span>
-                </li>
-                <li className="hover:text-white transition-colors">
-                  Kick & Bass <span className="font-normal">↗</span>
-                </li>
-                <li className="hover:text-white transition-colors">
-                  Beatport <span className="font-normal">↗</span>
+                <li className="hover:text-white transition-colors flex items-center gap-2">
+                  Spotify <DiagonalArrow size={25} color="currentColor" />
                 </li>
               </ul>
             </div>
@@ -101,7 +90,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Middle Section - Large Logo with LABS */}
-        <div className="mb-7.5 w-full">
+        <div className="md:mb-7.5 w-full">
           {/* Main Logo Container */}
           <div className="relative">
             {/* Equinox Logo - Left Aligned */}
