@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SplashScreen from "@/components/SplashScreen";
 import Footer from "@/components/Footer";
-import LetterScroll from "@/components/LetterScroll";
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
   return (
@@ -108,9 +108,9 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* Letter Scroll Component - Modern Tech Stack (After Hero Section) */}
+      {/* Tech Stack Component - Modern Tech Stack with Interactive Grid (After Hero Section) */}
       <div className="bg-gray-100 dark:bg-gray-800">
-        <LetterScroll />
+        <TechStack />
       </div>
 
       {/* Spacer for Footer Reveal */}
