@@ -119,11 +119,37 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-helvetica);
+    /* Completely hide default cursor */
+    cursor: none !important;
   }
 
   /* Set Helvetica as default for all text elements */
   h1, h2, h3, h4, h5, h6, p, span, div, a, li, ul, ol {
     font-family: var(--font-helvetica);
+  }
+
+  /* Hide default cursor for ALL elements */
+  * {
+    cursor: none !important;
+  }
+
+  /* Ensure no default cursor shows anywhere */
+  html, body, div, span, a, button, input, textarea, select, img, svg {
+    cursor: none !important;
+  }
+
+  /* Magnetic elements for custom cursor interaction */
+  .magnetic {
+    transition: transform 0.3s ease;
+  }
+
+  .magnetic:hover {
+    transform: scale(1.05);
+  }
+
+  /* Text cursor class for specific text elements */
+  .cursor-text {
+    cursor: text;
   }
 }
 

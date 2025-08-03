@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { helvetica, helveticaRounded, helveticaCompressed } from "@/lib/fonts";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body
         className={`${helvetica.variable} ${helveticaRounded.variable} ${helveticaCompressed.variable} antialiased`}
       >
+        <CustomCursor />
         {children}
       </body>
     </html>
