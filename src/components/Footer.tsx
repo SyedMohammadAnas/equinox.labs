@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Divider Line Above Bottom Section */}
-      <hr className="border-t border-white md:my-6 my-1.5 w-full" />
+      <hr className="border-t-5 border-white md:my-6 my-1.5 w-full" />
 
       {/* Bottom Section - Contact and Location */}
       <div>
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="text-lg font-light space-x-4 md:space-x-10 ml-76 -mt-12">
+          <div className="text-lg font-light space-x-4 md:space-x-10 ml-76 md:mt-0 -mt-12">
             <span>Contact</span>
           </div>
         </div>

@@ -88,7 +88,7 @@ export default function SplashScreen() {
               - Large on desktop (10rem)
               - Smaller on mobile (4rem)
             */}
-            <div className="absolute -bottom-2 sm:-bottom-9 right-5 text-[4rem] sm:text-[10rem] font-sans font-semibold">
+            <div className="absolute -bottom-2 sm:-bottom-9 right-5 text-[4rem] sm:text-[10rem] font-sans ">
               {count}
             </div>
 

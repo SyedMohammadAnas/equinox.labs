@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SplashScreen from "@/components/SplashScreen";
 import Footer from "@/components/Footer";
+import LetterScroll from "@/components/LetterScroll";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
       <SplashScreen />
 
       {/* Main Content Container with background and extra margin for footer reveal */}
-      <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 mb-[100dvh] bg-white dark:bg-gray-900">
+      <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 bg-white dark:bg-gray-900">
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
           <Image
             className="dark:invert"
@@ -106,6 +107,14 @@ export default function Home() {
           </a>
         </footer>
       </div>
+
+      {/* Letter Scroll Component - Modern Tech Stack (After Hero Section) */}
+      <div className="bg-gray-100 dark:bg-gray-800">
+        <LetterScroll />
+      </div>
+
+      {/* Spacer for Footer Reveal */}
+      <div className="h-[100dvh]"></div>
 
       {/* Fixed Footer Component - Reveals like a curtain on scroll */}
       <Footer />
