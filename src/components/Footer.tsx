@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="text-lg md:font-light space-x-4 md:space-x-10 ml-77">
+          <div className="text-lg md:font-light space-x-4 md:space-x-10 ml-75 -mt-10">
             <span>Contact Us</span>
           </div>
         </div>
