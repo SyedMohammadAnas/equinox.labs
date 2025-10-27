@@ -3,6 +3,7 @@ import { lotaGrotesque, lotaGrotesqueAlt1, lotaGrotesqueAlt2, lotaGrotesqueAlt3 
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import NavigationWidget from "@/components/NavigationWidget";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,11 +20,16 @@ export default function RootLayout({
       <body
         className={`${lotaGrotesque.variable} ${lotaGrotesqueAlt1.variable} ${lotaGrotesqueAlt2.variable} ${lotaGrotesqueAlt3.variable} antialiased`}
       >
+        {/* Custom cursor component - morphing effect for interactive elements */}
         <CustomCursor />
+
         {/* Smooth scrolling provider - wraps all content for kinetic scrolling */}
         <SmoothScrolling>
           {children}
         </SmoothScrolling>
+
+        {/* Persistent navigation widget - fixed at bottom center */}
+        <NavigationWidget />
       </body>
     </html>
   );

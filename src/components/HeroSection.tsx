@@ -34,6 +34,9 @@ const HeroSection: React.FC = () => {
   // State to track if mouse tracking is enabled (disabled during scroll)
   const [isMouseTrackingEnabled, setIsMouseTrackingEnabled] = useState(true);
 
+  // State to track scroll progress through the hero section (0 to 1)
+  const [scrollProgress, setScrollProgress] = useState(0);
+
   // Ref to store scroll timeout
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -48,6 +51,9 @@ const HeroSection: React.FC = () => {
     // Don't track mouse movement if disabled (during scroll)
     if (!isMouseTrackingEnabled) return;
 
+    // Don't track mouse movement if image is expanding (scrollProgress > 0.3 means it's expanding)
+    if (scrollProgress > 0.3) return;
+
     // Calculate mouse position as a percentage where 0 is far left, 50 is center, 100 is far right
     const mouseXPercent = (e.clientX / window.innerWidth) * 100;
 
@@ -56,7 +62,7 @@ const HeroSection: React.FC = () => {
     // Range: -16 (far left) to +16 (far right), with 0 being center
     const x = (mouseXPercent / 100) * 30 - 15; // -16 to +16 range (increased horizontal movement)
     setMousePosition({ x });
-  }, [isMouseTrackingEnabled]);
+  }, [isMouseTrackingEnabled, scrollProgress]);
 
   /**
    * Handle scroll events to disable mouse tracking during scroll
@@ -131,7 +137,11 @@ const HeroSection: React.FC = () => {
         scrub: 1, // Smooth scrubbing with 1 second delay
         pin: true, // Pin the hero section during scroll
         anticipatePin: 1, // Anticipate pin for better performance
-        onUpdate: () => {
+        onUpdate: (self) => {
+          // Track scroll progress to disable mouse tracking when image is expanding
+          const progress = self.progress; // 0 to 1, where 0 is start, 1 is end
+          setScrollProgress(progress);
+
           // Reset the transform to maintain centering during animation
           const element = imageRef.current;
           if (element) {
@@ -149,7 +159,7 @@ const HeroSection: React.FC = () => {
   return (
     <div
       ref={heroRef}
-      className="relative w-full min-h-[200vh] bg-white dark:bg-gray-900 overflow-hidden"
+      className="relative w-full min-h-[20vh] bg-white dark:bg-gray-900 overflow-hidden"
     >
       {/* Hero Content Container - Full width for end-to-end text span */}
       <div

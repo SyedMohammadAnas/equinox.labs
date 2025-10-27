@@ -138,7 +138,7 @@ const TechStack: React.FC = () => {
   };
 
   return (
-    <section className="pb-24 px-4 lg:px-8" data-no-cursor-morph>
+    <section className="pb-2 px-4 lg:px-8" data-no-cursor-morph>
       {/* Letter Scroll Animation */}
       <ul
         ref={containerRef}
@@ -259,7 +259,7 @@ const TechStack: React.FC = () => {
       </ul>
 
       {/* Technology Grid Section */}
-      <h4 className="font-semibold uppercase mb-4">Professional at</h4>
+      <h4 className="font-semibold uppercase mb-2">Professional at</h4>
       <div className="relative tech-grid-container">
         {/* Desktop Grid */}
         <div className="hidden lg:grid grid-rows-2">
