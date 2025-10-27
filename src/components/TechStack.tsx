@@ -18,7 +18,6 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 const TechStack: React.FC = () => {
   const containerRef = useRef<HTMLUListElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [highlightPosition, setHighlightPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const animationFrameRef = useRef<number | null>(null);
 
@@ -31,7 +30,6 @@ const TechStack: React.FC = () => {
 
     // Calculate when the component starts and ends its animation
     const componentTop = rect.top;
-    const componentHeight = rect.height;
 
     // Animation starts when component is 20% from bottom of viewport
     const animationStart = windowHeight * 0.8;
@@ -119,9 +117,7 @@ const TechStack: React.FC = () => {
   };
 
     // Handle grid item hover with smooth positioning
-  const handleGridItemHover = (itemName: string, event: React.MouseEvent<HTMLAnchorElement>) => {
-    setHoveredItem(itemName);
-
+  const handleGridItemHover = (_itemName: string, event: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const containerRect = event.currentTarget.closest('.tech-grid-container')?.getBoundingClientRect();
 
@@ -137,7 +133,6 @@ const TechStack: React.FC = () => {
 
   // Handle grid item leave
   const handleGridItemLeave = () => {
-    setHoveredItem(null);
     // Hide the highlight when mouse leaves grid area
     setHighlightPosition({ x: 0, y: 0, width: 0, height: 0 });
   };

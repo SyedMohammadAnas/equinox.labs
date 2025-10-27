@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -44,7 +44,7 @@ const HeroSection: React.FC = () => {
    *
    * Only works when mouse tracking is enabled (not during scroll)
    */
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     // Don't track mouse movement if disabled (during scroll)
     if (!isMouseTrackingEnabled) return;
 
@@ -56,7 +56,7 @@ const HeroSection: React.FC = () => {
     // Range: -16 (far left) to +16 (far right), with 0 being center
     const x = (mouseXPercent / 100) * 30 - 15; // -16 to +16 range (increased horizontal movement)
     setMousePosition({ x });
-  };
+  }, [isMouseTrackingEnabled]);
 
   /**
    * Handle scroll events to disable mouse tracking during scroll
@@ -101,7 +101,7 @@ const HeroSection: React.FC = () => {
         }
       };
     }
-  }, [isMouseTrackingEnabled]);
+  }, [isMouseTrackingEnabled, handleMouseMove]);
 
   /**
    * GSAP Animation Hook
@@ -131,7 +131,7 @@ const HeroSection: React.FC = () => {
         scrub: 1, // Smooth scrubbing with 1 second delay
         pin: true, // Pin the hero section during scroll
         anticipatePin: 1, // Anticipate pin for better performance
-        onUpdate: (self) => {
+        onUpdate: () => {
           // Reset the transform to maintain centering during animation
           const element = imageRef.current;
           if (element) {
@@ -192,7 +192,6 @@ const HeroSection: React.FC = () => {
               style={{
                 color: "#00ff00",
                 WebkitTextStroke: "2px #000",
-                textStroke: "2px #000", // For other browsers that support it
                 // No border property, only stroke on text
                 display: "inline-block",
                 margin: "0 0.15em",

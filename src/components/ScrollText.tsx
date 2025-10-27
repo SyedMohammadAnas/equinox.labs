@@ -32,8 +32,7 @@ export default function ScrollText() {
     ['around', 'the', 'world.'],
   ];
 
-  // Flatten to single array of words for animation
-  const words = textLines.flat();
+  // Flatten to single array of words for animation (not used directly, but lines are used)
 
   useEffect(() => {
     // Only run on client side

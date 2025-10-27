@@ -32,7 +32,6 @@ const LetterScroll: React.FC = () => {
 
     // Calculate when the component starts and ends its animation
     const componentTop = rect.top;
-    const componentHeight = rect.height;
 
     // Animation starts when component is 20% from bottom of viewport
     const animationStart = windowHeight * 0.8;
