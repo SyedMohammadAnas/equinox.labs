@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { helvetica, helveticaRounded, helveticaCompressed } from "@/lib/fonts";
+import { lotaGrotesque, lotaGrotesqueAlt1, lotaGrotesqueAlt2, lotaGrotesqueAlt3 } from "@/lib/fonts";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${helvetica.variable} ${helveticaRounded.variable} ${helveticaCompressed.variable} antialiased`}
+        className={`${lotaGrotesque.variable} ${lotaGrotesqueAlt1.variable} ${lotaGrotesqueAlt2.variable} ${lotaGrotesqueAlt3.variable} antialiased`}
       >
         <CustomCursor />
-        {children}
+        {/* Smooth scrolling provider - wraps all content for kinetic scrolling */}
+        <SmoothScrolling>
+          {children}
+        </SmoothScrolling>
       </body>
     </html>
   );

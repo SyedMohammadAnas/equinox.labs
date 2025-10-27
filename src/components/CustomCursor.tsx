@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
-// Enhanced custom cursor component with trailing effect and magnetic attraction
+// Enhanced custom cursor component with morphing effect for buttons and links
 const CustomCursor = () => {
   // State to track mouse position with smooth animation
   const mouseX = useMotionValue(0);
@@ -19,15 +19,17 @@ const CustomCursor = () => {
   const trailingX = useSpring(mouseX, trailingSpringConfig);
   const trailingY = useSpring(mouseY, trailingSpringConfig);
 
-  // State to track cursor effects
+  // State to track cursor effects and morphing
   const [cursorVariant, setCursorVariant] = useState("default");
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [magneticTarget, setMagneticTarget] = useState<HTMLElement | null>(null);
+  const [isMorphing, setIsMorphing] = useState(false);
+  const [morphDimensions, setMorphDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
 
   // Ref for performance optimization
   const cursorRef = useRef<HTMLDivElement>(null);
   const trailingRef = useRef<HTMLDivElement>(null);
+  const morphingRef = useRef<HTMLDivElement>(null);
 
   // Mouse position tracking effect
   useEffect(() => {
@@ -60,49 +62,118 @@ const CustomCursor = () => {
     };
   }, [mouseX, mouseY, isVisible]);
 
-  // Effect to handle cursor variants and magnetic attraction
+  // Effect to handle cursor variants and morphing effect
   useEffect(() => {
+    let currentInteractiveElement: HTMLElement | null = null;
+
+    const updateMorphDimensions = (element: HTMLElement) => {
+      const rect = element.getBoundingClientRect();
+
+      // Set morph dimensions with minimal padding for links to make capsules fit content
+      setMorphDimensions({
+        width: rect.width + 8, // Reduced padding for links
+        height: rect.height + 6,
+        x: rect.left - 4, // Reduced offset
+        y: rect.top - 3,
+      });
+    };
+
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
-      // Check for magnetic elements
-      if (target.classList.contains("magnetic")) {
-        setMagneticTarget(target);
-      } else {
-        setMagneticTarget(null);
-      }
+      // Check if the element or its parents have the no-morph attribute
+      const noMorphElement = target.closest("[data-no-cursor-morph]");
 
-      // Check for different element types to apply different cursor effects
-      if (target.tagName === "BUTTON" || target.closest("button")) {
-        setCursorVariant("button");
-      } else if ((target.tagName === "A" || target.closest("a")) && target.classList.contains("magnetic")) {
-        setCursorVariant("button"); // Use button size for magnetic links
-      } else if (target.tagName === "A" || target.closest("a")) {
-        setCursorVariant("link");
-      } else if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
-        setCursorVariant("input");
-      } else if (target.classList.contains("cursor-text")) {
-        setCursorVariant("text");
+      // Find the actual interactive element (button or link)
+      const button = target.closest("button");
+      const link = target.closest("a");
+      const interactiveElement = button || link;
+
+      // If hovering over a button or link and NOT in a no-morph area, morph the cursor
+      if (interactiveElement && !noMorphElement) {
+        currentInteractiveElement = interactiveElement;
+        updateMorphDimensions(interactiveElement);
+        setIsMorphing(true);
+        setCursorVariant("morphing");
       } else {
-        setCursorVariant("default");
+        // Regular cursor behavior for other elements
+        currentInteractiveElement = null;
+        setIsMorphing(false);
+
+        if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
+          setCursorVariant("input");
+        } else if (target.classList.contains("cursor-text")) {
+          setCursorVariant("text");
+        } else {
+          setCursorVariant("default");
+        }
       }
     };
 
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
+     const handleMouseMove = (e: MouseEvent) => {
+       const mouseX = e.clientX;
+       const mouseY = e.clientY;
 
-    // Add event listeners
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
+       // If currently morphing, check if mouse is still within expanded tolerance area
+       if (currentInteractiveElement && isMorphing) {
+         const rect = currentInteractiveElement.getBoundingClientRect();
 
-    // Cleanup
-    return () => {
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, []);
+         // Expanded tolerance zone (30px buffer around the element)
+         const tolerance = 30;
+         const expandedRect = {
+           left: rect.left - tolerance,
+           right: rect.right + tolerance,
+           top: rect.top - tolerance,
+           bottom: rect.bottom + tolerance,
+         };
+
+         // Check if mouse is within the expanded tolerance area
+         const isWithinTolerance =
+           mouseX >= expandedRect.left &&
+           mouseX <= expandedRect.right &&
+           mouseY >= expandedRect.top &&
+           mouseY <= expandedRect.bottom;
+
+         // If still within tolerance, keep morphing and update dimensions
+         if (isWithinTolerance) {
+           updateMorphDimensions(currentInteractiveElement);
+         } else {
+           // Mouse moved out of tolerance area, stop morphing
+           setIsMorphing(false);
+           currentInteractiveElement = null;
+         }
+       }
+     };
+
+     // Handle scroll events to update morph dimensions when page scrolls
+     const handleScroll = () => {
+       // If currently morphing, update the cursor position to match the element's new position
+       if (currentInteractiveElement && isMorphing) {
+         updateMorphDimensions(currentInteractiveElement);
+       }
+     };
+
+     const handleMouseDown = () => setIsClicking(true);
+     const handleMouseUp = () => setIsClicking(false);
+
+     // Add event listeners
+     document.addEventListener("mouseover", handleMouseOver);
+     document.addEventListener("mousemove", handleMouseMove);
+     document.addEventListener("mousedown", handleMouseDown);
+     document.addEventListener("mouseup", handleMouseUp);
+     window.addEventListener("scroll", handleScroll, { passive: true });
+     window.addEventListener("resize", handleScroll, { passive: true });
+
+     // Cleanup
+     return () => {
+       document.removeEventListener("mouseover", handleMouseOver);
+       document.removeEventListener("mousemove", handleMouseMove);
+       document.removeEventListener("mousedown", handleMouseDown);
+       document.removeEventListener("mouseup", handleMouseUp);
+       window.removeEventListener("scroll", handleScroll);
+       window.removeEventListener("resize", handleScroll);
+     };
+  }, [isMorphing]);
 
   // Cursor variants for different effects
   const cursorVariants = {
@@ -114,21 +185,11 @@ const CustomCursor = () => {
       mixBlendMode: "difference" as const,
       opacity: 1,
     },
-    button: {
-      width: 40,
-      height: 40,
+    morphing: {
       backgroundColor: "#ffffff",
-      scale: 1.3,
+      scale: 1,
       mixBlendMode: "difference" as const,
-      opacity: 0.9,
-    },
-    link: {
-      width: 40,
-      height: 40,
-      backgroundColor: "#ffffff",
-      scale: 1.2,
-      mixBlendMode: "difference" as const,
-      opacity: 0.95,
+      opacity: 1,
     },
     input: {
       width: 12,
@@ -153,7 +214,7 @@ const CustomCursor = () => {
     },
   };
 
-  // Trailing cursor variants
+  // Trailing cursor variants - only for non-morphing state
   const trailingVariants = {
     default: {
       width: 16,
@@ -161,20 +222,6 @@ const CustomCursor = () => {
       scale: 1,
       opacity: 0.5,
       mixBlendMode: "difference" as const,
-    },
-    button: {
-      width: 20,
-      height: 20,
-      backgroundColor: "#ffffff",
-      scale: 1.1,
-      opacity: 0.3,
-    },
-    link: {
-      width: 20,
-      height: 20,
-      backgroundColor: "#ffffff",
-      scale: 1,
-      opacity: 0.4,
     },
     input: {
       width: 6,
@@ -199,49 +246,85 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Main cursor */}
-      <motion.div
-        ref={cursorRef}
-        className="fixed pointer-events-none z-50 rounded-full"
-        animate={isClicking ? "clicking" : cursorVariant}
-        variants={cursorVariants}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5,
-        }}
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-          opacity: isVisible ? 1 : 0,
-        }}
-        initial={{ opacity: 0 }}
-      />
+      {/* Morphing cursor - appears when hovering over buttons or links */}
+      {isMorphing && (
+        <motion.div
+          ref={morphingRef}
+          className="fixed pointer-events-none z-[100] bg-white"
+          animate={{
+            width: morphDimensions.width,
+            height: morphDimensions.height,
+            x: morphDimensions.x,
+            y: morphDimensions.y,
+            borderRadius: Math.min(morphDimensions.height / 2, 50),
+          }}
+          initial={{
+            width: 32,
+            height: 32,
+            x: cursorX.get() - 16,
+            y: cursorY.get() - 16,
+            borderRadius: 16,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 25,
+          }}
+          style={{
+            mixBlendMode: "difference" as const,
+            opacity: isVisible ? 1 : 0,
+          }}
+        />
+      )}
 
-      {/* Trailing cursor */}
-      <motion.div
-        ref={trailingRef}
-        className="fixed pointer-events-none z-40 rounded-full"
-        animate={isClicking ? "clicking" : cursorVariant}
-        variants={trailingVariants}
-        transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 35,
-          mass: 0.8,
-        }}
-        style={{
-          x: trailingX,
-          y: trailingY,
-          translateX: "-50%",
-          translateY: "-50%",
-          opacity: isVisible ? 1 : 0,
-        }}
-        initial={{ opacity: 0 }}
-      />
+      {/* Regular circular cursor - shows when NOT morphing */}
+      {!isMorphing && (
+        <>
+          {/* Main cursor */}
+          <motion.div
+            ref={cursorRef}
+            className="fixed pointer-events-none z-[100] rounded-full"
+            animate={isClicking ? "clicking" : cursorVariant}
+            variants={cursorVariants}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 28,
+              mass: 0.5,
+            }}
+            style={{
+              x: cursorX,
+              y: cursorY,
+              translateX: "-50%",
+              translateY: "-50%",
+              opacity: isVisible ? 1 : 0,
+            }}
+            initial={{ opacity: 0 }}
+          />
+
+          {/* Trailing cursor */}
+          <motion.div
+            ref={trailingRef}
+            className="fixed pointer-events-none z-[90] rounded-full"
+            animate={isClicking ? "clicking" : cursorVariant}
+            variants={trailingVariants}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 35,
+              mass: 0.8,
+            }}
+            style={{
+              x: trailingX,
+              y: trailingY,
+              translateX: "-50%",
+              translateY: "-50%",
+              opacity: isVisible ? 1 : 0,
+            }}
+            initial={{ opacity: 0 }}
+          />
+        </>
+      )}
     </>
   );
 };

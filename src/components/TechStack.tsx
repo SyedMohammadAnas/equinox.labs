@@ -143,7 +143,7 @@ const TechStack: React.FC = () => {
   };
 
   return (
-    <section className="pb-24 px-4 lg:px-8">
+    <section className="pb-24 px-4 lg:px-8" data-no-cursor-morph>
       {/* Letter Scroll Animation */}
       <ul
         ref={containerRef}

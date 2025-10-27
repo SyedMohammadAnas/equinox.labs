@@ -65,7 +65,7 @@ export default function SplashScreen() {
       {/* Only render the splash screen if it's still counting or curtain is rising */}
       {(isCounting || isCurtainRising) && (
         <motion.div
-          className="fixed inset-0 z-50 bg-[#F5F5DC] text-black flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-white text-black flex items-center justify-center"
           variants={curtainVariants}
           initial="initial"
           animate={isCurtainRising ? "rising" : "initial"}
@@ -82,20 +82,13 @@ export default function SplashScreen() {
         >
           {/* Main content area */}
           <div className="relative w-full h-full flex items-center justify-center">
-            {/* Countdown display in bottom right - smooth transitions without jittering */}
+            {/* Countdown display centered - smaller size */}
             {/*
-              Countdown display with responsive text size:
-              - Large on desktop (10rem)
-              - Smaller on mobile (4rem)
+              Countdown display with reduced text size:
+              - Medium size for centered display
             */}
-            <div className="absolute -bottom-2 sm:-bottom-9 right-5 text-[4rem] sm:text-[10rem] font-sans ">
+            <div className="text-[2rem] sm:text-[1.5rem] font-sans font-bold">
               {count}
-            </div>
-
-            {/* Please wait message in bottom left */}
-            {/* Please wait message in bottom left - now bold */}
-            <div className="absolute bottom-5  left-5 sm:left-10 text-sm sm:text-xl font-sans font-bold ">
-              (Can&apos;t you just wait?)
             </div>
           </div>
         </motion.div>

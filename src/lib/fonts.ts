@@ -1,68 +1,216 @@
 import localFont from 'next/font/local';
 
 /**
- * Helvetica Font Configuration
+ * Lota Grotesque Font Configuration
  *
- * Local font setup for Helvetica variants:
- * - Regular: Helvetica.ttf
- * - Bold: Helvetica-Bold.ttf
- * - Light: helvetica-light-587ebe5a59211.ttf
- * - Oblique: Helvetica-Oblique.ttf
- * - Bold Oblique: Helvetica-BoldOblique.ttf
- * - Rounded Bold: helvetica-rounded-bold-5871d05ead8de.otf
- * - Compressed: helvetica-compressed-5871d14b6903a.otf
+ * Local font setup for Lota Grotesque variants:
+ * - Thin (200): Los Andes  Lota Grotesque Thin.otf
+ * - Extra Light (250): Los Andes  Lota Grotesque Extra Light.otf
+ * - Light (300): Los Andes  Lota Grotesque Light.otf
+ * - Regular (400): Los Andes  Lota Grotesque Regular.otf
+ * - Semi Bold (600): Los Andes  Lota Grotesque Semi Bold.otf
+ * - Bold (700): Los Andes  Lota Grotesque Bold.otf
+ * - Black (900): Los Andes  Lota Grotesque Black.otf
+ * - Italic variants available for all weights
  */
 
-// Main Helvetica font (Regular)
-export const helvetica = localFont({
+// Main Lota Grotesque font (Regular)
+export const lotaGrotesque = localFont({
   src: [
     {
-      path: '../../public/helvetica-255/helvetica-light-587ebe5a59211.ttf',
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Thin.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Extra Light.otf',
+      weight: '250',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Light.otf',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '../../public/helvetica-255/Helvetica.ttf',
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Regular.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../public/helvetica-255/Helvetica-Bold.ttf',
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Semi Bold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Bold.otf',
       weight: '700',
       style: 'normal',
     },
     {
-      path: '../../public/helvetica-255/Helvetica-Oblique.ttf',
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+    // Italic variants
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Thin Italic.otf',
+      weight: '200',
+      style: 'italic',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Extra Light Italic.otf',
+      weight: '250',
+      style: 'italic',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Light Italic.otf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Regular Italic.otf',
       weight: '400',
       style: 'italic',
     },
     {
-      path: '../../public/helvetica-255/Helvetica-BoldOblique.ttf',
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Semi Bold Italic.otf',
+      weight: '600',
+      style: 'italic',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Bold Italic.otf',
       weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Black Italic.otf',
+      weight: '900',
       style: 'italic',
     },
   ],
-  variable: '--font-helvetica',
+  variable: '--font-lota-grotesque',
   display: 'swap',
 });
 
-// Helvetica Rounded Bold variant
-export const helveticaRounded = localFont({
-  src: '../../public/helvetica-255/helvetica-rounded-bold-5871d05ead8de.otf',
-  variable: '--font-helvetica-rounded',
+// Lota Grotesque Alt 1 variant
+export const lotaGrotesqueAlt1 = localFont({
+  src: [
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 1 Thin.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 1 Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 1 Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 1 Semi Bold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 1 Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 1 Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-lota-grotesque-alt-1',
   display: 'swap',
 });
 
-// Helvetica Compressed variant
-export const helveticaCompressed = localFont({
-  src: '../../public/helvetica-255/helvetica-compressed-5871d14b6903a.otf',
-  variable: '--font-helvetica-compressed',
+// Lota Grotesque Alt 2 variant
+export const lotaGrotesqueAlt2 = localFont({
+  src: [
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 2 Thin.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 2 Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 2 Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 2 Semi Bold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 2 Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 2 Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-lota-grotesque-alt-2',
+  display: 'swap',
+});
+
+// Lota Grotesque Alt 3 variant
+export const lotaGrotesqueAlt3 = localFont({
+  src: [
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 3 Thin.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 3 Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 3 Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 3 Semi Bold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 3 Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/lota-grotesque/Los Andes  Lota Grotesque Alt 3 Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-lota-grotesque-alt-3',
   display: 'swap',
 });
 
 // Export all font variables for easy access
 export const fontVariables = {
-  helvetica: helvetica.variable,
-  helveticaRounded: helveticaRounded.variable,
-  helveticaCompressed: helveticaCompressed.variable,
+  lotaGrotesque: lotaGrotesque.variable,
+  lotaGrotesqueAlt1: lotaGrotesqueAlt1.variable,
+  lotaGrotesqueAlt2: lotaGrotesqueAlt2.variable,
+  lotaGrotesqueAlt3: lotaGrotesqueAlt3.variable,
 };
